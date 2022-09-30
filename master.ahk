@@ -98,7 +98,7 @@ Msgbox, 4132, Are you sure you want to update AutoHotkeys?, Clicking Yes will up
 ifMsgbox No
 Return
 else
-Run, https://drive.google.com/file/d/1wlqM03FdwIxr1XGu1v6i7qLc8C530wXx/view?usp=sharing
+Run, https://drive.google.com/file/d/16ud36uayadgyHxGnwq091CJ2k6lbW3J5/view
 Traytip, Download File/Launch File to Begin Update
 Return
 
