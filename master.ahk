@@ -116,7 +116,7 @@ return
 
 ;AHK SUBMIT HOTKEY FORM
 $F11::
-Run, https://docs.google.com/forms/d/e/1FAIpQLSeeYaPYiGvy19ijCVKNQOHCs7B-rZPrIInMrtDrA6uAIYhTFQ/viewform
+Run, https://docs.google.com/forms/d/e/1FAIpQLSc0pCxvQoUgJdp6-rWHQIkarm-i-UYUqC6BYuVvUeivngWErw/viewform
 return
 
 ;HELPDESK
