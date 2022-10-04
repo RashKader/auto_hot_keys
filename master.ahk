@@ -699,7 +699,7 @@ return
 copied := Clipboard
 clipboard=
 (
-I apologize for the delayed response. We're a bit backed up with our emails and are working to respond to our customers as soon as we can. If you have a time sensitive matter, please consider giving us a call at 1-800-293-4232 or contacting us on live chat for immediate assistance.  If you'd prefer to keep working through email, I'm happy to help take care of anything that you need!
+I apologize for the delayed response. We're a bit backed up with our emails and are working to respond to our customers as soon as we can. If you have a time sensitive matter, please consider giving us a call at 1-800-293-4232 or contacting us on live chat for immediate assistance. If you'd prefer to keep working through email, I'm happy to help take care of anything that you need!
 )
 clipwait
 send ^v
@@ -1558,13 +1558,11 @@ return
 copied := Clipboard
 clipboard=
 (
-We have an Online Store Platform that helps you feature and offer your custom gear directly on your own online storefront! An Online Store is a great way for your teams and your community to show their pride, and purchase customized products that you've curated specifically for their needs.
+We're offering a new "all in one" online store platform that's been designed to save you time, space, and money. With our online stores, you're able to easily set up your branded storefront with the different products and designs that you want, with the ability to choose new options whenever you need to. After you create the store, we'll handle all of the fulfillment and customer service for you - for free!
 
-Custom Ink handles everything from the set-up and design, to payment, fulfillment, and distribution. We'll also handle customer service for your customers. This means that anyone who buys from the store deals directly with us for everything from order placement and payment, to changes and returns.
+You can learn more about it, and get started by clicking the link below:
 
-If you're looking to learn more please fill out this form below and one of our team members will reach out soon!
-
-https://docs.google.com/forms/d/e/1FAIpQLSesXx2zO0uwFIj15rg0ghRn7RgyYV_wC_lDqpr-G3_4v1-Q8g/viewform 
+https://www.customink.com/onlinestores
 )
 clipwait
 send ^v
