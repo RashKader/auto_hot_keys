@@ -55,7 +55,7 @@ Run, https://customink.zendesk.com/hc/en-us
 Return
 
 CloseAHK:
-Msgbox, 4132, Are you sure you want to close AutoHotkeys?, Clicking Yes will close AutoHotkeys. You will need to relaunch AutoHotkeys before you can continue using them again.`r`n`r`nIf you do not want to close, click No to cancel.
+Msgbox, 4132, Are you sure you want to close AutoHotkeys?, Clicking Yes will close AutoHotkeys. You will need to relaunch AutoHotkeys before you can continue using them again.`r`n`r`nIf you do not want to close AutoHotkeys, click No to cancel.
 
 ifMsgbox No
 Return
