@@ -218,6 +218,12 @@ return
 run, https://www.customink.com/admin/quotes
 return
 
+;Verint
+<#V::
+>#V::
+run, https://verint02.five9-wfo.com/wfo/control/signin
+return
+
 ;Sales Wiki
 !W::
 run, https://inkernet.customink.com/pages/viewpage.action?pageId=24347654
