@@ -1,5 +1,5 @@
+Process, Priority, , High
 #SingleInstance force
-
 ; AHK Setup
 
 #Include  %A_ScriptDir%
@@ -158,7 +158,7 @@ Gui, theSpellingList3:destroy
 Return
 
 
-$F9::return ; disabling F9 key while tool is open.
+$F9::Reload ; disabling F9 key while tool is open.
 
 UHOutputClose:
 GuiControl, disable, OutputClose
@@ -213,7 +213,7 @@ else if (CustHotkey = 10)
 Gui, userHotkeys10:Submit, NoHide
 redirectTo = CustomList2
 }
-if (CustHotkey = 11)
+else if (CustHotkey = 11)
 {
 Gui, userHotkeys11:Submit, NoHide
 redirectTo = CustomList3
@@ -314,7 +314,7 @@ loop, parse, emptyfields1, `,, %A_Space% 				; loop through the list
 		}
 }
 
-emptyfields = #3m, #wow, #ap, #turn, #turncost, #awrquestion, #awrquestions, #awr, #partner, #holiday, #bulkperks, #bulkquote, #canada, #jobs, #script, #transcript, #chatclose, #collegeno, #content, #contentstand, #covid, #account, #designemail, #cs, #csemail, #csquestions, #address, #guarantee, #delay, #deleteact, #discon, #disney, #donate, #embsimple, #gof, #extendhood, #extendedhood, #extendshirt, #extendedshirt, #filetype, #filetypes, #discount, #foil, #fund, #fundtransone, #fundtranstwo, #glitter, #glow, #gofdesign, #goalchange, #changegoal, #gofgoal, #gofink, #gofhcp, #goftrick, #goftransfer, #gofpers, #tones, #halftones, #hcpmin, #hood, #iscost, #isturn, #islimit, #infobulk, #infosingles, #accountemail, #checkinfo, #inkchange, #intercheck, #interinfo, #inter, #kit, #kitlimit, #kitprice, #lowres, #metallic, #mixmatch, #multi, #neon, #nomin, #notvoucher, #offsite, #offsitequestion, #offsitequestions, #offsitetemp, #onlinestore, #onlinestores, #stock, #oos, #orderinfo, #otherleg, #constraint, #constraints, #pad, #perscost, #multipers, #inkmatch, #poemail, #poly, #pps, #spam, #increase, #pricing, #personal, #poinfo, #qrcode, #taxfollow, #redraw, #redrawn, #refemail, #reset, #rtq, #reverse, #chest, #roemail, #roughquote, #satransfer, #samesome, #sample, #samples, #servicetransone, #sideleg, #sideshirt, #singlesperks, #singlesquote, #sleeve, #font, #specialfont, #sponsor, #linkbulk, #linksingles, #store, #stores, #subblank, #subink, #prevention, #notax, #trap, #uninote, #uniquest, #cartvoucher, #vouchercart, #vss, #vsscost 
+emptyfields = #3m, #wow, #ap, #turn, #turncost, #awrquestion, #awrquestions, #awr, #partner, #holiday, #bulkperks, #bulkquote, #canada, #jobs, #script, #transcript, #chatclose, #collegeno, #content, #contentstand, #covid, #account, #designemail, #cs, #csemail, #csquestions, #address, #guarantee, #delay, #deleteact, #discon, #disney, #donate, #embsimple, #gof, #extendhood, #extendedhood, #extendshirt, #extendedshirt, #filetype, #filetypes, #discount, #foil, #fund, #fundtransone, #fundtranstwo, #glitter, #glow, #gofdesign, #goalchange, #changegoal, #gofgoal, #gofink, #gofhcp, #goftrick, #goftransfer, #gofpers, #tones, #halftones, #hcpmin, #hood, #iscost, #isturn, #islimit, #infobulk, #infosingles, #accountemail, #checkinfo, #inkchange, #intercheck, #interinfo, #inter, #kit, #kitlimit, #kitprice, #lowres, #metallic, #mixmatch, #multi, #neon, #nomin, #notvoucher, #offsite, #offsitequestion, #offsitequestions, #offsitetemp, #stock, #oos, #orderinfo, #otherleg, #constraint, #constraints, #pad, #perscost, #multipers, #inkmatch, #poemail, #poly, #pps, #spam, #increase, #pricing, #personal, #poinfo, #qrcode, #taxfollow, #redraw, #redrawn, #refemail, #reset, #rtq, #reverse, #chest, #roemail, #roughquote, #satransfer, #samesome, #sample, #samples, #servicetransone, #sideleg, #sideshirt, #singlesperks, #singlesquote, #sleeve, #font, #specialfont, #sponsor, #linkbulk, #linksingles, #store, #stores, #subblank, #subink, #prevention, #notax, #trap, #uninote, #uniquest, #cartvoucher, #vouchercart, #vss, #vsscost, #checkinfo, #checkinforush, #quotebulk, #quotesingles, #designlink, #linkdesign, #peml, #digscreen
 
 loop, parse, emptyfields, `,, %A_Space% 				; loop through the list
 {
