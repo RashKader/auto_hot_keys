@@ -1,6 +1,10 @@
+
+Process, Priority, , High
 #SingleInstance force
 #Include %A_ScriptDir%
 INI=%A_scriptdir%\settings.ini
+
+
 
 DetectHiddenWindows, On
 SetTitleMatchMode, 2
@@ -17,6 +21,12 @@ Menu, Tray, Add ,,
 Menu, Tray, Add , Close AutoHotkeys, CloseAHK
 Menu, Tray, Add ,,
 Menu, Tray, Add , Update AutoHotkeys, UpdateAHK
+Menu, Tray, Add ,,
+Menu, Tray, Add , Custom AutoHotkeys, CustomAHK
+Menu, Tray, Add ,,
+Menu, Tray, Add , Autocorrect | On, Autocorretcon
+Menu, Tray, Add ,,
+Menu, Tray, Add , Autocorrect | Off, Autocorrectoff
 Menu, Tray, Add ,,
 Menu, Tray, Add , AHK Search Tool, WikiTool
 Menu, Tray, Add ,,
@@ -35,6 +45,12 @@ IfWinNotExist, %A_scriptdir%\usercreated.ahk
     if (skill != "ERROR") || (showName != "ERROR") || (showNick != "ERROR") || (showEmail != "ERROR")
     Run, %A_ScriptDir%\userCreated.ahk, ,UseErrorLevel
 }
+
+{
+IfNotExist, %startuplocation%new_spellaid_AHK_20 - Shortcut.lnk
+FileCreateShortcut, C:\Users\%A_UserName%\Desktop\AHK\new_spellaid_AHK_20.ahk, %startuplocation%new_spellaid_AHK_20 - Shortcut.lnk
+}
+
 Return
 
 Refresh:
@@ -43,6 +59,28 @@ ifMsgbox No
 Return
 else
 Reload, %A_ScriptDir%\master.ahk
+Return
+
+
+CustomAHK:
+Run, %A_scriptdir%\setup.ahk 
+Return
+
+
+Autocorretcon:
+Msgbox, 4132, Are you sure you want to turn on Spelling Autocorrect?, Clicking Yes will turn on Spelling Autocorrect. If you do not want to turn on Spelling Autocorrect, click No to cancel.
+ifMsgbox No
+Return
+else
+run, %A_ScriptDir%\new_spellaid_AHK_20.ahk
+Return
+
+Autocorrectoff:
+Msgbox, 4132, Are you sure you want to turn off Spelling Autocorrect?, Clicking Yes will turn off Spelling Autocorrect. If you do not want to turn off Spelling Autocorrect, click No to cancel.
+ifMsgbox No
+Return
+else
+WinKill, %A_ScriptDir%\new_spellaid_AHK_20.ahk
 Return
 
 
@@ -102,9 +140,9 @@ Run, https://drive.google.com/file/d/16ud36uayadgyHxGnwq091CJ2k6lbW3J5/view
 Traytip, Download File/Launch File to Begin Update
 Return
 
-/*
-end of breadcrumb function, beginning of keyboard shortcuts
-*/
+ 
+;end of breadcrumb function, beginning of keyboard shortcuts
+ 
 
 
  
@@ -112,21 +150,31 @@ end of breadcrumb function, beginning of keyboard shortcuts
 ;AHK SEARCH 
 $F12::
 Run, https://inkernet.customink.com/pages/viewpage.action?pageId=1283427021
+reload
 return
 
 ;AHK SUBMIT HOTKEY FORM
 $F11::
 Run, https://docs.google.com/forms/d/e/1FAIpQLSc0pCxvQoUgJdp6-rWHQIkarm-i-UYUqC6BYuVvUeivngWErw/viewform
+reload
 return
 
 ;HELPDESK
 $F10::
 Run, https://customink.zendesk.com/hc/en-us
+reload
 return
 
 ;AHK SETUP
 $F9::
 run, %A_ScriptDir%\setup.ahk,, UseErrorLevel
+reload
+return
+
+;Blank Cost Table
+!B::
+run, https://home.customink.com/back/sales/realb.jsp
+reload
 return
 
 
@@ -134,105 +182,124 @@ return
 <#F::
 >#F::
 run, https://circuit.in.customink.com
+reload
 return
 
 ;Condeco
 <#C::
 >#C::
 run, https://customink.condecosoftware.com/EnterpriseLite/#/app/dashboard
+reload
 return
 
 ;Design Lab
 !D::
 run, https://www.customink.com/ndx/#/ad/gate
+reload
 return
 
 ;Embassy
 !E::
 run, https://www.customink.com/admin/sales/
+reload
 return
 
 ;Five9 Viewer
-!V::
+!F::
 run, https://five9stats.out.customink.com/sales
+reload
 return
 
 ;Help Center
 !H::
 run, https://www.customink.com/help_center
+reload
 return
 
 ;Spreadsheet Importer Tool
 !I::
 run, https://order-fulfillment-service.out.customink.com/fulfillment_imports/new
+reload
 return
 
 ;Individual Shipping Template 3.0
 !T::
 run, https://docs.google.com/spreadsheets/d/1uDpLeai4TuKgOUX_RqAh_rm0vxuFR3TUmCNus9V6Cu0/copy
+reload
 return
 
 ;Internal Catalog auto opt-in
 !C::
 run, https://www.customink.com/products/internal
+reload
 return
 
 ;Licensing Tool (Greek, University)
 !U::
 run, https://sites.google.com/customink.com/licensing-tool-operations/home
+reload
 return
 
 ;Logo Use Tool
 !L::
 run, https://sites.google.com/customink.com/logo-usage-tool/home
+reload
 return
 
 ;Operations Point Chat
 !O::
 run, https://order-chat.in.customink.com/home
+reload
 return
 
 ;Products Page
 !P::
 run, https://www.customink.com/products/
+reload
 return
 
 ;Retail Brands T&C Tool
 !R::
 run, https://inkernet.customink.com/pages/viewpage.action?pageId=1247189986
+reload
 return
 
 ;Sales Schedule
 <#S::
 >#S::
 run, https://docs.google.com/spreadsheets/d/1OZxdFtYPn6G-JuITHxjPDsj1994AISzbH4_Nwp_l4a0/edit#gid=475821428
+reload
 return
 
 ;Singles (No Minimum) Products
 !S::
 run, https://www.customink.com/products/categories/no-minimum/96
+reload
 return
 
 ;Super Quoter
 !Q::
 run, https://www.customink.com/admin/quotes
+reload
 return
 
 ;Verint
-<#V::
->#V::
+!V::
 run, https://verint02.five9-wfo.com/wfo/control/signin
+reload
 return
 
 ;Sales Wiki
 !W::
 run, https://inkernet.customink.com/pages/viewpage.action?pageId=24347654
+reload
 return
 
 ;Workday
 <#W::
 >#W::
 run, http://workday.customink.com/
+reload
 return
 
 
@@ -240,15 +307,12 @@ return
 
  
 
+;end of keyboard shortcuts
 
 
-/*
-end of keyboard shortcuts
-*/
 
-/*
-beginning of AHK
-*/
+;beginning of AHK
+
 
 
 
@@ -264,6 +328,7 @@ clipwait
 send ^v
 sleep 333
 clipboard := copied
+reload
 return
 
 ::#wow::
@@ -282,13 +347,14 @@ clipwait
 send ^v
 sleep 333
 clipboard := copied
+reload
 return
 
 ::#ap::
 copied := Clipboard
 clipboard=
 (
-If you're looking to reorder your design but need less than 6 items, we offer a special type of order called an Additional Piece order. With this type of order, we'll match the per item price from your previous order, and can apply that pricing up to 5 items total in your new order. There will also a $20 setup charge added to the cost since we're bypassing the 6 item minimum. This setup fee will ensure that these additional items print identically to the items from your original order.
+If you're looking to reorder your design but need less than 6 items, we offer a special type of order called an Additional Piece order. With this type of order, we'll match the per item price from your previous order, and can apply that pricing up to 5 items total in your new order. There will also a $20 setup charge added to the cost since we'll need to create a new screen for the design. This setup fee will ensure that these additional items print identically to the items from your original order.
 
 Would you like me to help get that order placed for you now?
 )
@@ -296,6 +362,7 @@ clipwait
 send ^v
 sleep 333
 clipboard := copied
+reload
 return
 
 
@@ -318,6 +385,7 @@ clipwait
 send ^v
 sleep 333
 clipboard := copied
+reload
 return
 
 
@@ -342,6 +410,7 @@ clipwait
 send ^v
 sleep 333
 clipboard := copied
+reload
 return
 
 
@@ -356,12 +425,13 @@ clipboard=
 
 2. What file type would you like your artwork in?
 
-3. If the artwork is released, we ask that you do not use it to print with one of our competitors, is that okay?
+3. If the artwork is released we ask that you do not use it to print with one of our competitors, is that okay?
 )
 clipwait
 send ^v
 sleep 333
 clipboard := copied
+reload
 return
 
 
@@ -374,12 +444,13 @@ If you're looking to receive a copy of any print ready art file from your order,
 
 For some added context - the reason for this is that some of the fonts and designs that are used in our Design Lab are licensed through partners we work with, and are not able to be released to our customers. If no licensed designs or fonts are found, we'll be able to release the print ready file as is. Otherwise, we'll only be able to release the non-licensed elements.
 
-If you'd like I can put in that request for you now?
+Would you like me to put in that request for you now?
 )
 clipwait
 send ^v
 sleep 333
 clipboard := copied
+reload
 return
 
 ::#partner::
@@ -395,6 +466,7 @@ clipwait
 send ^v
 sleep 333
 clipboard := copied
+reload
 return
 
 
@@ -404,37 +476,17 @@ clipboard=
 (
 Currently we don't offer unique deals or promotions for the holidays. Instead, we make sure to curate our pricing, perks, products and print services to cover a wide range of budget needs year round! I'm also here to work with you to find the best options for your order needs when you're ready to move forward with pricing.
 
-You can also take advantage of a small voucher we offer each month, which can be found directly on our website here: www.customink.com/voucher
+You can also take advantage of a small voucher we offer each month, which can be found directly on our website here: https://www.customink.com/ink/coupons
 )
 clipwait
 send ^v
 sleep 333
 clipboard := copied
+reload
 return
 
 
-::#bulkquote::
-copied := Clipboard
-clipboard=
-(
-======================
-%copied%
-======================
-**Extended sizes are available in select styles at an additional cost. (Not all products are available in the same size range).
 
-Your Custom Ink order comes with:
-
-*Free artistic adjustments to alignment, art, or text for the best look possible
-*Free proof email on most orders
-*Free shipping with a guaranteed delivery date
-*A quality and money-back guarantee
-======================
-)
-clipwait
-send ^v
-sleep 333
-clipboard := copied
-return
 
 ::#canada::
 copied := Clipboard
@@ -450,6 +502,7 @@ clipwait
 send ^v
 sleep 333
 clipboard := copied
+reload
 return
 
 ::#jobs::
@@ -462,6 +515,7 @@ clipwait
 send ^v
 sleep 333
 clipboard := copied
+reload
 return
 
 
@@ -480,9 +534,134 @@ clipwait
 send ^v
 sleep 333
 clipboard := copied
+reload
 return
 
+::#quotebulk::
+::#bulkquote::
 
+{
+incNumber := Clipboard
+
+Loop
+{
+StringReplace, incNumber, incNumber,#1,,UseErrorLevel
+
+
+        if ErrorLevel = 0  ; No more replacements needed.
+            break
+
+
+    }
+
+needleTwo = "Item 1. "
+StringReplace, NewStr, NewStr, `r`n`r`n`r`n`r`n, , All
+IfInString, incNumber, Item 2
+{
+StringReplace, NewStr, incNumber, Copy of ,, All
+Loop
+    {
+        StringReplace, NewStr, NewStr, `r`n`r`n`r`n, `r`n======================`r`n`r`n, UseErrorLevel
+        if ErrorLevel = 0  ; No more replacements needed.
+            break
+    }
+
+NewStr:=RegExReplace(NewStr,"` +","` ")
+}
+else
+{
+StringReplace, NewStr, incNumber, Item 1., %A_SPace%, All
+Loop
+    {
+        StringReplace, NewStr, NewStr, `r`n`r`n`r`n, `r`n=======================`r`n`r`n, UseErrorLevel
+        if ErrorLevel = 0  ; No more replacements needed.
+            break
+    }
+StringReplace, NewStr, NewStr, Copy of ,, All
+NewStr:=RegExReplace(NewStr,"` +","` ")
+}
+; StringReplace, NewStr, NewStr, `r`n`r`n, `r`n, All
+dmatter := StrReplace(NewStr, Quote, Quoted, Counting)
+RegExReplace(NewStr, "Quote", "", Count)
+StringReplace, NewStr, NewStr, %A_Space%Quote, Quote, All
+
+if (Count > 1)
+{
+clipboard=
+(
+======================
+
+%NewStr%
+
+======================
+**Extended sizes are available in select styles at an additional cost. (Not all products are available in the same size range).
+
+Your Custom Ink order comes with: 
+
+*Free artistic adjustments to alignment, art, or text for the best look possible
+*Free proof email
+*Free shipping with a guaranteed delivery date
+*A quality and money-back guarantee
+======================
+)
+FinalString := Clipboard
+
+StringReplace, NewStr, FinalString, ========================================`r`n========================================`r`n,`r`n======================, All
+StringReplace, NewStr, NewStr, Quote,Quote, All
+StringReplace, NewStr, NewStr, **Extended,**Extended, All
+StringReplace, NewStr, NewStr, Total Quantity,`r`nTotal Quantity, All 
+StringReplace, NewStr, FinalString, `r`n========================================`r`n,`r`n======================`r`n, All
+
+
+clipboard=
+(
+%NewStr%
+)
+}
+else
+{
+IfInString, NewStr, Order #
+{
+StringReplace, NewStr, NewStr, Order #,`r`n`r`nOrder #
+}
+clipboard=
+(
+======================%NewStr%
+
+======================
+**Extended sizes are available in select styles at an additional cost. (Not all products are available in the same size range).
+
+Of course, every Custom Ink order comes with:
+
+*Free artistic adjustments to alignment, art, or text for the best look possible
+*Free proof email
+*Free shipping with a guaranteed delivery date
+*A quality and money-back guarantee
+======================
+)
+FinalString := Clipboard
+
+StringReplace, NewStr, FinalString, ========================================`r`n========================================`r`n,`r`n======================, All
+StringReplace, NewStr, NewStr, Quote,`r`n`r`nQuote, All
+StringReplace, NewStr, NewStr, Total Quantity,`r`nTotal Quantity, All
+; StringReplace, OutputVar, InputVar, SearchText [, ReplaceText, ReplaceAll?] 
+StringReplace, NewStr, NewStr, %A_Space%Quote, Quote, All
+clipboard=
+(
+%NewStr%
+)
+}
+clipwait
+send ^v
+sleep 333
+clipboard=
+(
+%incNumber%
+)
+
+}
+reload
+return
 
 ::#script::
 ::#transcript::
@@ -511,6 +690,7 @@ clipwait
 send ^v
 sleep 333
 clipboard := copied
+reload
 return
 
 ::#collegeno::
@@ -523,6 +703,7 @@ clipwait
 send ^v
 sleep 333
 clipboard := copied
+reload
 return
 
 
@@ -537,6 +718,7 @@ clipwait
 send ^v
 sleep 333
 clipboard := copied
+reload
 return
 
 ::#contentstand::
@@ -553,6 +735,7 @@ clipwait
 send ^v
 sleep 333
 clipboard := copied
+reload
 return
 
 
@@ -566,6 +749,7 @@ clipwait
 send ^v
 sleep 333
 clipboard := copied
+reload
 return
 
 
@@ -581,6 +765,7 @@ clipwait
 send ^v
 sleep 333
 clipboard := copied
+reload
 return
 
 
@@ -611,10 +796,12 @@ clipwait
 send ^v
 sleep 333
 clipboard := copied
+reload
 return
 
 
 ::#cs::
+::#ds::
 copied := Clipboard
 clipboard=
 (
@@ -626,6 +813,7 @@ clipwait
 send ^v
 sleep 333
 clipboard := copied
+reload
 return
 
 
@@ -659,6 +847,7 @@ clipwait
 send ^v
 sleep 333
 clipboard := copied
+reload
 return
 
 
@@ -685,6 +874,7 @@ clipwait
 send ^v
 sleep 333
 clipboard := copied
+reload
 return
 
 ::#guarantee::
@@ -699,6 +889,7 @@ clipwait
 send ^v
 sleep 333
 clipboard := copied
+reload
 return
 
 ::#delay::
@@ -711,6 +902,7 @@ clipwait
 send ^v
 sleep 333
 clipboard := copied
+reload
 return
 
 
@@ -718,25 +910,50 @@ return
 copied := Clipboard
 clipboard=
 (
-Currently we don't offer the option to completely delete your account in our system. Your designs can be deleted individually as long as they haven't been used for an Order, Group Order Form, or Fundraiser. To delete your designs, go to our homepage (customink.com), and under "Your Account" choose "Your Designs" from the menu. At the top right corner of each design a trash can icon will be highlighted if the design is able to be deleted. Clicking that icon will delete your design.
+We don't have an option that allows us to delete your account immediately. Instead, we ask that you submit a request through our Privacy Policy so we can make sure and verify your information first. I've linked our Privacy Policy below. 
+
+I've also added a direct link to that request form if you're ready to move forward now. Once you fill out the form, you'll receive an email that will ask you to verify and confirm your information for security purposes.
+
+Privacy Policy - https://www.customink.com/about/privacy
+
+Account Information form - https://privacyportal.onetrust.com/webform/ad37f637-4936-48fb-9de5-eacfd28c9739/81ffeefa-aa44-4b28-9a0e-e8710790f056
 )
 clipwait
 send ^v
 sleep 333
 clipboard := copied
+reload
 return
 
+::#designlink::
+::#linkdesign::
+copied := Clipboard
+clipboard=
+(
+Click on the link below to view your design:
+
+%copied%
+
+If there are any changes you'd like to see, please let me know and I'll be happy to make those for you.
+)
+clipwait
+send ^v
+sleep 333
+clipboard := copied
+reload
+return
 
 ::#discon::
 copied := Clipboard
 clipboard=
 (
-It looks like the current product that you've chosen has been discontinued, I apologize. The good news is, we offer a wide variety of options in our product selection. If you'd like, I can take a look at what we have available and see if I'm able to find you something similar?
+It looks like the current product that you've chosen has been discontinued, I apologize. The good news is, we offer a wide variety of options in our product selection. Would you like me to take a look at what we have available and see if I'm able to find you something similar?
 )
 clipwait
 send ^v
 sleep 333
 clipboard := copied
+reload
 return
 
 
@@ -753,8 +970,29 @@ clipwait
 send ^v
 sleep 333
 clipboard := copied
+reload
 return
 
+::#digscreen::
+copied := Clipboard
+clipboard=
+(
+Screen printing and digital printing are very similar decoration methods, but they do differ slightly in some ways. Here are some of the main differences between them:
+
+- Digital printing prints the entire design directly into the fabric itself, known as "direct to garment" (or DTG). Screen printing uses a stencil (or "screen") to layer each ink color onto the product surface one at a time. When finished, the combined "screens" will achieve the final look of the design
+
+- In most cases, digital printing is used for high color or photo-like designs in order to capture the unique details in the artwork
+
+- Screen printing tends to print designs more vibrantly that digital printing. However, digital printing can still capture a lot of vibrancy in colors and tones
+
+When it comes to choosing a print method, we'll always make sure to select the best printing option for you based on your order and artwork needs.
+)
+clipwait
+send ^v
+sleep 333
+clipboard := copied
+reload
+return
 
 
 ::#disney::
@@ -771,12 +1009,13 @@ Disney has some very specific requirements that we have to follow in order to pr
 
 - The Disney "font" cannot be used to print the Park or Cruise names
 
-With that being said, we print many different Disney themed designs each year. I'd be happy to help create you a design that is Disney inspired if you'd like?
+With this in mind, would you like my help creating a Disney inspired design that falls within these guidelines?
 )
 clipwait
 send ^v
 sleep 333
 clipboard := copied
+reload
 return
 
 ::#donate::
@@ -789,6 +1028,7 @@ clipwait
 send ^v
 sleep 333
 clipboard := copied
+reload
 return
 
 
@@ -802,6 +1042,7 @@ clipwait
 send ^v
 sleep 333
 clipboard := copied
+reload
 return
 
 ::#gof::
@@ -809,11 +1050,14 @@ copied := Clipboard
 clipboard=
 (
 We offer a Group Order Form that allows you to coordinate with your group to place an online order. You can customize it with different shipping options, select how it handles payment, offer complementary products, easily view your group's activity, and much more. It's completely free to set up and use, and is a great way to keep your group order organized.
+
+You can read more about it here: https://www.customink.com/ink/group-order-form
 )
 clipwait
 send ^v
 sleep 333
 clipboard := copied
+reload
 return
 
 
@@ -832,6 +1076,7 @@ clipwait
 send ^v
 sleep 333
 clipboard := copied
+reload
 return
 
 
@@ -850,6 +1095,7 @@ clipwait
 send ^v
 sleep 333
 clipboard := copied
+reload
 return
 
 
@@ -867,6 +1113,7 @@ clipwait
 send ^v
 sleep 333
 clipboard := copied
+reload
 return
 
 
@@ -877,12 +1124,13 @@ clipboard=
 (
 We don't currently offer a flat discount. Instead, we're always here to help review your order details, and make recommendations or changes to find something that aligns more with the budget that you're looking to stay within.
 
-We also have a $5 off voucher for orders reaching a $100 total that we offer to our customers each month. You can find that voucher at: customink.com/voucher
+We also have a $5 off voucher for orders reaching a $100 total that we offer to our customers each month. You can find that voucher at: https://www.customink.com/ink/coupons
 )
 clipwait
 send ^v
 sleep 333
 clipboard := copied
+reload
 return
 
 
@@ -893,12 +1141,13 @@ clipboard=
 (
 We have a special type of film you can use for your design called a "Foil Transfer", which we offer in 7 awesome colors.
 
-Since Foil is an option that's only available through our special pricing, you'll need to contact us to work up that pricing and place your bulk order for you. There are some limitations to the product types and fabrics that Foil can be applied on, which I can go over with you now if you'd like?
+Since Foil is an option that's only available through our special pricing, you'll need to contact us to work up that pricing and place your bulk order for you. There are some limitations to the product types and fabrics that Foil can be applied on as well. Would you like me to go over those limitations with you now?
 )
 clipwait
 send ^v
 sleep 333
 clipboard := copied
+reload
 return
 
 
@@ -918,6 +1167,7 @@ clipwait
 send ^v
 sleep 333
 clipboard := copied
+reload
 return
 
 
@@ -932,6 +1182,7 @@ clipwait
 send ^v
 sleep 333
 clipboard := copied
+reload
 return
 
 
@@ -940,12 +1191,13 @@ return
 copied := Clipboard
 clipboard=
 (
-We actually have a dedicated team of Fundraising Advisors who work with all of our Fundraising customers. It looks like they are currently unavailable in our chat system, but if you'd like I can get you the number to call them now, or if you'd prefer a call back within a business day or two I can submit that request instead?
+We actually have a dedicated team of Fundraising Advisors who work with all of our Fundraising customers. It looks like they are currently unavailable in our chat system. Would you'd like me to give you the number so you can call them now, or would you prefer I submit a request for them to call you back within a business day or two?
 )
 clipwait
 send ^v
 sleep 333
 clipboard := copied
+reload
 return
 
 
@@ -956,12 +1208,13 @@ clipboard=
 (
 We have a special type of ink called Glitter Ink that we offer in a Gold or Silver color, or as a Crystalina glitter overlay on top of all other standard ink colors.
 
-Since Glitter Ink is an option that's only available through our special pricing, you'll need to contact us to work up that pricing and place your bulk order for you. There are some limitations to the product types and fabrics that Glitter Ink can print on, which I can go over with you now if you'd like?
+Since Glitter Ink is an option that's only available through our special pricing, you'll need to contact us to work up that pricing and place your bulk order for you. There are some limitations to the product types and fabrics that Glitter Ink can print on as well. Would you like me to go over those limiations with you now?
 )
 clipwait
 send ^v
 sleep 333
 clipboard := copied
+reload
 return
 
 
@@ -978,6 +1231,7 @@ clipwait
 send ^v
 sleep 333
 clipboard := copied
+reload
 return
 
 
@@ -994,6 +1248,7 @@ clipwait
 send ^v
 sleep 333
 clipboard := copied
+reload
 return
 
 
@@ -1013,6 +1268,7 @@ clipwait
 send ^v
 sleep 333
 clipboard := copied
+reload
 return
 
 
@@ -1031,6 +1287,7 @@ clipwait
 send ^v
 sleep 333
 clipboard := copied
+reload
 return
 
 
@@ -1051,6 +1308,7 @@ clipwait
 send ^v
 sleep 333
 clipboard := copied
+reload
 return
 
 
@@ -1069,6 +1327,7 @@ clipwait
 send ^v
 sleep 333
 clipboard := copied
+reload
 return
 
 
@@ -1085,6 +1344,7 @@ clipwait
 send ^v
 sleep 333
 clipboard := copied
+reload
 return
 
 
@@ -1099,6 +1359,7 @@ clipwait
 send ^v
 sleep 333
 clipboard := copied
+reload
 return
 
 
@@ -1115,6 +1376,7 @@ clipwait
 send ^v
 sleep 333
 clipboard := copied
+reload
 return
 
 
@@ -1132,6 +1394,7 @@ clipwait
 send ^v
 sleep 333
 clipboard := copied
+reload
 return
 
 
@@ -1152,6 +1415,7 @@ clipwait
 send ^v
 sleep 333
 clipboard := copied
+reload
 return
 
 
@@ -1171,6 +1435,7 @@ clipwait
 send ^v
 sleep 333
 clipboard := copied
+reload
 return
 
 
@@ -1185,6 +1450,7 @@ clipwait
 send ^v
 sleep 333
 clipboard := copied
+reload
 return
 
 
@@ -1199,6 +1465,7 @@ clipwait
 send ^v
 sleep 333
 clipboard := copied
+reload
 return
 
 
@@ -1209,12 +1476,13 @@ clipboard=
 (
 When individually shipping your items there are some limitations that determine what can be done within the order itself. For example, we can't include personalized names or numbers in the order. We also can't provide any expedited shipping options.
 
-There may be some other limitations when shipping items individually more specific to your current order, and if you'd like I can go over those with you as well. 
+There may also be some other limitations when shipping items individually that are more unique to your order specifically. Would you like me to review your order details now, and check for any limitations that might apply?
 )
 clipwait
 send ^v
 sleep 333
 clipboard := copied
+reload
 return
 
 
@@ -1231,6 +1499,7 @@ clipwait
 send ^v
 sleep 333
 clipboard := copied
+reload
 return
 
 
@@ -1245,6 +1514,7 @@ clipwait
 send ^v
 sleep 333
 clipboard := copied
+reload
 return
 
 ::#accountemail::
@@ -1261,6 +1531,7 @@ clipwait
 send ^v
 sleep 333
 clipboard := copied
+reload
 return
 
 
@@ -1269,7 +1540,7 @@ return
 copied := Clipboard
 clipboard=
 (
-When sending your check payment please use standard mail and send it to this address:
+When sending your check payment through standard mail, please send it to this address:
 
 Customink LLC
 PO BOX 719439
@@ -1288,11 +1559,37 @@ clipwait
 send ^v
 sleep 333
 clipboard := copied
+reload
 return
 
+::#checkinfofast::
+copied := Clipboard
+clipboard=
+(
+When sending your check payment using an expedited mail delivery option, please send it to this address:
 
+Custom Ink
+2910 District Ave 3rd Floor
+Fairfax, VA 22031
+Attn: Accounts Receivable
+
+Make sure that the check includes the following information:
+
+- Payable to Custom Ink
+- Drawn on a US issuing bank and payable in US Dollars
+- A valid nine-digit bank routing number (ABA number) and account number
+- Required signatures
+- Custom Ink order number (added to the memo section of the check)
+)
+clipwait
+send ^v
+sleep 333
+clipboard := copied
+reload
+return
 
 ::#inkchange::
+::#changeink::
 copied := Clipboard
 clipboard=
 (
@@ -1302,6 +1599,7 @@ clipwait
 send ^v
 sleep 333
 clipboard := copied
+reload
 return
 
 
@@ -1318,6 +1616,7 @@ clipwait
 send ^v
 sleep 333
 clipboard := copied
+reload
 return
 
 ::#interinfo::
@@ -1336,18 +1635,20 @@ clipwait
 send ^v
 sleep 333
 clipboard := copied
+reload
 return
 
 ::#inter::
 copied := Clipboard
 clipboard=
 (
-We offer the ability to ship orders internationally to most countries around the world. These types of shipments can take anywhere to a month or more to deliver to their final destination depending on the specific location they're going to. When shipping internationally there are a few key details to be aware of, and some information that's required before we can place the order. If you'd like I can go over that with you now?
+We offer the ability to ship orders internationally to most countries around the world. These types of shipments can take anywhere to a month or more to deliver to their final destination depending on the specific location they're going to. When shipping internationally there are a few key details to be aware of, and some information that's required before we can place the order. Would you like me to go over that information and those details with you now?
 )
 clipwait
 send ^v
 sleep 333
 clipboard := copied
+reload
 return
 
 
@@ -1364,6 +1665,7 @@ clipwait
 send ^v
 sleep 333
 clipboard := copied
+reload
 return
 
 
@@ -1384,6 +1686,7 @@ clipwait
 send ^v
 sleep 333
 clipboard := copied
+reload
 return
 
 
@@ -1402,6 +1705,7 @@ clipwait
 send ^v
 sleep 333
 clipboard := copied
+reload
 return
 
 
@@ -1417,6 +1721,7 @@ clipwait
 send ^v
 sleep 333
 clipboard := copied
+reload
 return
 
 
@@ -1430,6 +1735,7 @@ clipwait
 send ^v
 sleep 333
 clipboard := copied
+reload
 return
 
 ::#mixmatch::
@@ -1442,6 +1748,7 @@ clipwait
 send ^v
 sleep 333
 clipboard := copied
+reload
 return
 
 
@@ -1456,6 +1763,7 @@ clipwait
 send ^v
 sleep 333
 clipboard := copied
+reload
 return
 
 
@@ -1466,12 +1774,13 @@ clipboard=
 (
 We have a special type of ink called Neon Ink that we offer in 7 different colors.
 
-The Neon Ink will appear much brighter and more vibrant than stock ink colors, and can really make your design stand out! The pricing for this special ink adds $20 to the order cost, and you'll receive one free Neon Ink each time you reach $400 in your order total. There are some limitations to the product types and fabrics that Neon ink can print on, which I can go over with you now if you'd like?
+The Neon Ink will appear much brighter and more vibrant than stock ink colors, and can really make your design stand out! The pricing for this special ink adds $20 to the order cost, and you'll receive one free Neon Ink each time you reach $400 in your order total. There are some limitations to the product types and fabrics that Neon ink can print on as well. Would you like me to go over those limitations with you now?
 )
 clipwait
 send ^v
 sleep 333
 clipboard := copied
+reload
 return
 
 
@@ -1490,6 +1799,7 @@ clipwait
 send ^v
 sleep 333
 clipboard := copied
+reload
 return
 
 
@@ -1504,6 +1814,7 @@ clipwait
 send ^v
 sleep 333
 clipboard := copied
+reload
 return
 
 ::#offsite::
@@ -1518,6 +1829,7 @@ clipwait
 send ^v
 sleep 333
 clipboard := copied
+reload
 return
 
 ::#offsitequestion::
@@ -1537,6 +1849,7 @@ clipwait
 send ^v
 sleep 333
 clipboard := copied
+reload
 return
 
 ::#offsitetemp::
@@ -1557,23 +1870,132 @@ clipwait
 send ^v
 sleep 333
 clipboard := copied
+reload
 return
 
-::#onlinestore::
-::#onlinestores::
-copied := Clipboard
+
+::#quotespec::
+::#specquote::
+
+{
+incNumber := Clipboard
+
+Loop
+{
+StringReplace, incNumber, incNumber,#1,,UseErrorLevel
+
+
+        if ErrorLevel = 0  ; No more replacements needed.
+            break
+
+
+    }
+
+needleTwo = "Item 1. "
+StringReplace, NewStr, NewStr, `r`n`r`n`r`n`r`n, , All
+IfInString, incNumber, Item 2
+{
+StringReplace, NewStr, incNumber, Copy of ,, All
+Loop
+    {
+        StringReplace, NewStr, NewStr, `r`n`r`n`r`n, `r`n======================`r`n`r`n, UseErrorLevel
+        if ErrorLevel = 0  ; No more replacements needed.
+            break
+    }
+
+NewStr:=RegExReplace(NewStr,"` +","` ")
+}
+else
+{
+StringReplace, NewStr, incNumber, Item 1., %A_SPace%, All
+Loop
+    {
+        StringReplace, NewStr, NewStr, `r`n`r`n`r`n, `r`n=======================`r`n`r`n, UseErrorLevel
+        if ErrorLevel = 0  ; No more replacements needed.
+            break
+    }
+StringReplace, NewStr, NewStr, Copy of ,, All
+NewStr:=RegExReplace(NewStr,"` +","` ")
+}
+; StringReplace, NewStr, NewStr, `r`n`r`n, `r`n, All
+dmatter := StrReplace(NewStr, Quote, Quoted, Counting)
+RegExReplace(NewStr, "Quote", "", Count)
+StringReplace, NewStr, NewStr, %A_Space%Quote, Quote, All
+
+if (Count > 1)
+{
 clipboard=
 (
-We're offering a new "all in one" online store platform that's been designed to save you time, space, and money. With our online stores, you're able to easily set up your branded storefront with the different products and designs that you want, with the ability to choose new options whenever you need to. After you create the store, we'll handle all of the fulfillment and customer service for you - for free!
+======================
 
-You can learn more about it, and get started by clicking the link below:
+%NewStr%
 
-https://www.customink.com/onlinestores
+======================
+
+Your Custom Ink order comes with: 
+
+*Free artistic adjustments to alignment, art, or text for the best look possible
+*Free proof email
+*Free shipping with a guaranteed delivery date
+*A quality and money-back guarantee
+======================
 )
+FinalString := Clipboard
+
+StringReplace, NewStr, FinalString, ========================================`r`n========================================`r`n,`r`n======================, All
+StringReplace, NewStr, NewStr, Quote,Quote, All
+StringReplace, NewStr, NewStr, **Extended,**Extended, All
+StringReplace, NewStr, NewStr, Total Quantity,`r`nTotal Quantity, All 
+StringReplace, NewStr, FinalString, `r`n========================================`r`n,`r`n======================`r`n, All
+
+
+clipboard=
+(
+%NewStr%
+)
+}
+else
+{
+IfInString, NewStr, Order #
+{
+StringReplace, NewStr, NewStr, Order #,`r`n`r`nOrder #
+}
+clipboard=
+(
+======================%NewStr%
+
+======================
+
+Of course, every Custom Ink order comes with:
+
+*Free artistic adjustments to alignment, art, or text for the best look possible
+*Free proof email
+*Free shipping with a guaranteed delivery date
+*A quality and money-back guarantee
+======================
+)
+FinalString := Clipboard
+
+StringReplace, NewStr, FinalString, ========================================`r`n========================================`r`n,`r`n======================, All
+StringReplace, NewStr, NewStr, Quote,`r`n`r`nQuote, All
+StringReplace, NewStr, NewStr, Total Quantity,`r`nTotal Quantity, All
+; StringReplace, OutputVar, InputVar, SearchText [, ReplaceText, ReplaceAll?] 
+StringReplace, NewStr, NewStr, %A_Space%Quote, Quote, All
+clipboard=
+(
+%NewStr%
+)
+}
 clipwait
 send ^v
 sleep 333
-clipboard := copied
+clipboard=
+(
+%incNumber%
+)
+
+}
+reload
 return
 
 ::#stock::
@@ -1591,6 +2013,7 @@ clipwait
 send ^v
 sleep 333
 clipboard := copied
+reload
 return
 
 ::#orderinfo::
@@ -1610,6 +2033,7 @@ clipwait
 send ^v
 sleep 333
 clipboard := copied
+reload
 return
 
 ::#otherleg::
@@ -1626,6 +2050,7 @@ clipwait
 send ^v
 sleep 333
 clipboard := copied
+reload
 return
 
 ::#constraint::
@@ -1645,6 +2070,7 @@ clipwait
 send ^v
 sleep 333
 clipboard := copied
+reload
 return
 
 ::#pad::
@@ -1657,6 +2083,7 @@ clipwait
 send ^v
 sleep 333
 clipboard := copied
+reload
 return
 
 ::#multipers::
@@ -1671,6 +2098,7 @@ clipwait
 send ^v
 sleep 333
 clipboard := copied
+reload
 return
 
 
@@ -1687,6 +2115,7 @@ clipwait
 send ^v
 sleep 333
 clipboard := copied
+reload
 return
 
 
@@ -1703,6 +2132,7 @@ clipwait
 send ^v
 sleep 333
 clipboard := copied
+reload
 return
 
 ::#inkmatch::
@@ -1717,6 +2147,7 @@ clipwait
 send ^v
 sleep 333
 clipboard := copied
+reload
 return
 
 ::#poemail::
@@ -1735,6 +2166,7 @@ clipwait
 send ^v
 sleep 333
 clipboard := copied
+reload
 return
 
 
@@ -1748,6 +2180,7 @@ clipwait
 send ^v
 sleep 333
 clipboard := copied
+reload
 return
 
 ::#pps::
@@ -1760,6 +2193,7 @@ clipwait
 send ^v
 sleep 333
 clipboard := copied
+reload
 return
 
 ::#spam::
@@ -1772,6 +2206,7 @@ clipwait
 send ^v
 sleep 333
 clipboard := copied
+reload
 return
 
 ::#increase::
@@ -1784,6 +2219,7 @@ clipwait
 send ^v
 sleep 333
 clipboard := copied
+reload
 return
 
 ::#pricing::
@@ -1802,6 +2238,7 @@ clipwait
 send ^v
 sleep 333
 clipboard := copied
+reload
 return
 
 ::#personal::
@@ -1816,6 +2253,20 @@ clipwait
 send ^v
 sleep 333
 clipboard := copied
+reload
+return
+
+::#peml::
+copied := Clipboard
+clipboard=
+(
+For most bulk orders, our art team will send a Final Picture Proof email that will allow you to review the print ready artwork, sizes, and other order details. This proof may or may not require your approval prior to moving to print, so please keep an eye out for its arrival to ensure there are no delays in your order.
+)
+clipwait
+send ^v
+sleep 333
+clipboard := copied
+reload
 return
 
 ::#poinfo::
@@ -1836,6 +2287,7 @@ clipwait
 send ^v
 sleep 333
 clipboard := copied
+reload
 return
 
 
@@ -1849,6 +2301,7 @@ clipwait
 send ^v
 sleep 333
 clipboard := copied
+reload
 return
 
 
@@ -1856,7 +2309,7 @@ return
 copied := Clipboard
 clipboard=
 (
-I've forward your tax exemption information to our Billing department. As soon as it's been validated, we'll be able to exempt the tax charged to your order. If payment has already been completed, we'll credit the tax back to the payment method used for the purchase.
+I've forwarded your tax exemption information to our Billing department. As soon as it's been validated, we'll be able to exempt the tax charged to your order. If payment has already been completed, we'll credit the tax back to the payment method used for the purchase.
 
 Please feel free to reply with any additional questions or needs, and I'd be happy to help get those taken care of as well.
 
@@ -1866,6 +2319,7 @@ clipwait
 send ^v
 sleep 333
 clipboard := copied
+reload
 return
 
 
@@ -1882,6 +2336,7 @@ clipwait
 send ^v
 sleep 333
 clipboard := copied
+reload
 return
 
 
@@ -1909,6 +2364,7 @@ clipwait
 send ^v
 sleep 333
 clipboard := copied
+reload
 return
 
 
@@ -1930,6 +2386,7 @@ clipwait
 send ^v
 sleep 333
 clipboard := copied
+reload
 return
 
 
@@ -1943,6 +2400,7 @@ clipwait
 send ^v
 sleep 333
 clipboard := copied
+reload
 return
 
 ::#reverse::
@@ -1959,6 +2417,7 @@ clipwait
 send ^v
 sleep 333
 clipboard := copied
+reload
 return
 
 ::#chest::
@@ -1975,6 +2434,7 @@ clipwait
 send ^v
 sleep 333
 clipboard := copied
+reload
 return
 
 ::#roemail::
@@ -1996,6 +2456,7 @@ clipwait
 send ^v
 sleep 333
 clipboard := copied
+reload
 return
 
 
@@ -2018,6 +2479,7 @@ clipwait
 send ^v
 sleep 333
 clipboard := copied
+reload
 return
 
 ::#satransfer::
@@ -2030,6 +2492,7 @@ clipwait
 send ^v
 sleep 333
 clipboard := copied
+reload
 return
 
 ::#samesome::
@@ -2044,23 +2507,21 @@ clipwait
 send ^v
 sleep 333
 clipboard := copied
+reload
 return
 
-::#sample::
-::#samples::
+::#blanksample::
+::#blanksamples::
 copied := Clipboard
 clipboard=
 (
-We offer two types of samples:
-
-1. Blank sample - This is a sample of an item without a design printed on it, that will allow you to get familiar with the fit, color, and feel of a product. It comes at a low cost, and can deliver on a free 10 day turnaround. 
-
-2. Printed sample - This is a "Pre-Production" sample that you can add to your bulk order at the time it's being placed and paid for. The pre-production sample process allows us to send a single, fully printed item to you ahead of time for you to see in person before we send the rest of the order. The cost for this sample is $100, and you might possibly qualify for one free depending on your order quantity.
+We offer blank sample orders at a low cost with free 10-day delivery. This allows you to test out the product you're considering before ordering in bulk with your print added. The blank sample would be yours to keep as well, so you can select the style, color, and size for any blank samples you wanted to try out.
 )
 clipwait
 send ^v
 sleep 333
 clipboard := copied
+reload
 return
 
 ::#servicetransone::
@@ -2073,6 +2534,7 @@ clipwait
 send ^v
 sleep 333
 clipboard := copied
+reload
 return
 
 ::#sideleg::
@@ -2089,6 +2551,7 @@ clipwait
 send ^v
 sleep 333
 clipboard := copied
+reload
 return
 
 ::#sideshirt::
@@ -2105,6 +2568,7 @@ clipwait
 send ^v
 sleep 333
 clipboard := copied
+reload
 return
 
 ::#singlesperks::
@@ -2121,29 +2585,134 @@ clipwait
 send ^v
 sleep 333
 clipboard := copied
+reload
 return
 
+::#quotesingles::
 ::#singlesquote::
-copied := Clipboard
+
+{
+incNumber := Clipboard
+
+Loop
+{
+StringReplace, incNumber, incNumber,#1,,UseErrorLevel
+
+
+        if ErrorLevel = 0  ; No more replacements needed.
+            break
+
+
+    }
+
+needleTwo = "Item 1. "
+StringReplace, NewStr, NewStr, `r`n`r`n`r`n`r`n, , All
+IfInString, incNumber, Item 2
+{
+StringReplace, NewStr, incNumber, Copy of ,, All
+Loop
+    {
+        StringReplace, NewStr, NewStr, `r`n`r`n`r`n, `r`n======================`r`n`r`n, UseErrorLevel
+        if ErrorLevel = 0  ; No more replacements needed.
+            break
+    }
+
+NewStr:=RegExReplace(NewStr,"` +","` ")
+}
+else
+{
+StringReplace, NewStr, incNumber, Item 1., %A_SPace%, All
+Loop
+    {
+        StringReplace, NewStr, NewStr, `r`n`r`n`r`n, `r`n=======================`r`n`r`n, UseErrorLevel
+        if ErrorLevel = 0  ; No more replacements needed.
+            break
+    }
+StringReplace, NewStr, NewStr, Copy of ,, All
+NewStr:=RegExReplace(NewStr,"` +","` ")
+}
+; StringReplace, NewStr, NewStr, `r`n`r`n, `r`n, All
+dmatter := StrReplace(NewStr, Quote, Quoted, Counting)
+RegExReplace(NewStr, "Quote", "", Count)
+StringReplace, NewStr, NewStr, %A_Space%Quote, Quote, All
+
+if (Count > 1)
+{
 clipboard=
 (
- ======================
-%copied% 
- =======================
+======================
+
+%NewStr%
+
+======================
 **Extended sizes are available in select styles at an additional cost. (Not all products are available in the same size range).
 
- Your Custom Ink order comes with:
+Your Custom Ink order comes with: 
 
- *Free artistic adjustments to alignment, art, or text for the best look possible
- *Free shipping with a guaranteed delivery date
- *A quality and money-back guarantee
+*Free artistic adjustments to alignment, art, or text for the best look possible
+*Free shipping with a guaranteed delivery date
+*A quality and money-back guarantee
 ======================
 )
+FinalString := Clipboard
+
+StringReplace, NewStr, FinalString, ========================================`r`n========================================`r`n,`r`n======================, All
+StringReplace, NewStr, NewStr, Quote,Quote, All
+StringReplace, NewStr, NewStr, **Extended,**Extended, All
+StringReplace, NewStr, NewStr, Total Quantity,`r`nTotal Quantity, All 
+StringReplace, NewStr, FinalString, `r`n========================================`r`n,`r`n======================`r`n, All
+
+
+clipboard=
+(
+%NewStr%
+)
+}
+else
+{
+IfInString, NewStr, Order #
+{
+StringReplace, NewStr, NewStr, Order #,`r`n`r`nOrder #
+}
+clipboard=
+(
+======================%NewStr%
+
+======================
+**Extended sizes are available in select styles at an additional cost. (Not all products are available in the same size range).
+
+Of course, every Custom Ink order comes with:
+
+*Free artistic adjustments to alignment, art, or text for the best look possible
+*Free proof email
+*Free shipping with a guaranteed delivery date
+*A quality and money-back guarantee
+======================
+)
+FinalString := Clipboard
+
+StringReplace, NewStr, FinalString, ========================================`r`n========================================`r`n,`r`n======================, All
+StringReplace, NewStr, NewStr, Quote,`r`n`r`nQuote, All
+StringReplace, NewStr, NewStr, Total Quantity,`r`nTotal Quantity, All
+; StringReplace, OutputVar, InputVar, SearchText [, ReplaceText, ReplaceAll?] 
+StringReplace, NewStr, NewStr, %A_Space%Quote, Quote, All
+clipboard=
+(
+%NewStr%
+)
+}
 clipwait
 send ^v
 sleep 333
-clipboard := copied
+clipboard=
+(
+%incNumber%
+)
+
+}
+reload
 return
+
 
 ::#sleeve::
 copied := Clipboard
@@ -2159,6 +2728,7 @@ clipwait
 send ^v
 sleep 333
 clipboard := copied
+reload
 return
 
 ::#font::
@@ -2176,6 +2746,7 @@ clipwait
 send ^v
 sleep 333
 clipboard := copied
+reload
 return
 
 
@@ -2193,10 +2764,12 @@ clipwait
 send ^v
 sleep 333
 clipboard := copied
+reload
 return
 
 
 ::#linkbulk::
+::#bulklink::
 copied := Clipboard
 clipboard=
 (
@@ -2212,9 +2785,11 @@ clipwait
 send ^v
 sleep 333
 clipboard := copied
+reload
 return
 
 ::#linksingles::
+::#singleslink::
 copied := Clipboard
 clipboard=
 (
@@ -2228,6 +2803,7 @@ clipwait
 send ^v
 sleep 333
 clipboard := copied
+reload
 return
 
 ::#subblank::
@@ -2240,6 +2816,7 @@ clipwait
 send ^v
 sleep 333
 clipboard := copied
+reload
 return
 
 ::#subink::
@@ -2252,6 +2829,7 @@ clipwait
 send ^v
 sleep 333
 clipboard := copied
+reload
 return
 
 ::#prevention::
@@ -2264,6 +2842,7 @@ clipwait
 send ^v
 sleep 333
 clipboard := copied
+reload
 return
 
 
@@ -2283,6 +2862,7 @@ clipwait
 send ^v
 sleep 333
 clipboard := copied
+reload
 return
 
 
@@ -2306,6 +2886,7 @@ clipwait
 send ^v
 sleep 333
 clipboard := copied
+reload
 return
 
 
@@ -2329,6 +2910,7 @@ clipwait
 send ^v
 sleep 333
 clipboard := copied
+reload
 return
 
 
@@ -2357,6 +2939,7 @@ clipwait
 send ^v
 sleep 333
 clipboard := copied
+reload
 return
 
 
@@ -2372,6 +2955,7 @@ clipwait
 send ^v
 sleep 333
 clipboard := copied
+reload
 return
 
 
@@ -2382,12 +2966,13 @@ clipboard=
 (
 When ordering various sizes or types of products (Toddler, Youth, Adult, Women's etc) in the same order, there are times the original design won't fit properly on each item. In these cases, we offer the ability to add additional screens to the order. Adding these screens will allow you to print your design at different sizes, which will ensure that it fits much more proportionately across all products.
 
-You'll need to contact us when you're ready to place your order if you'd like to add additional screens, as they come with an additional cost. If you'd like I can go over that pricing with you now?
+You'll need to contact us when you're ready to place your order if you'd like to add additional screens, as they come with an additional cost. Would you like me to go over that pricing with you now?
 )
 clipwait
 send ^v
 sleep 333
 clipboard := copied
+reload
 return
 
 
@@ -2407,9 +2992,10 @@ clipwait
 send ^v
 sleep 333
 clipboard := copied
+reload
 return
 
 
-/*
-end of AHK
-*/
+
+;end of AHK
+
