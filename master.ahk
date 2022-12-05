@@ -819,6 +819,7 @@ return
 
 
 ::#csemail::
+::#dsemail::
 copied := Clipboard
 clipboard=
 (
@@ -853,6 +854,7 @@ return
 
 
 ::#csquestions::
+::#dsquestions::
 copied := Clipboard
 clipboard=
 (
@@ -2305,23 +2307,6 @@ reload
 return
 
 
-::#taxfollow::
-copied := Clipboard
-clipboard=
-(
-I've forwarded your tax exemption information to our Billing department. As soon as it's been validated, we'll be able to exempt the tax charged to your order. If payment has already been completed, we'll credit the tax back to the payment method used for the purchase.
-
-Please feel free to reply with any additional questions or needs, and I'd be happy to help get those taken care of as well.
-
-Have a great day and thank you for choosing Custom Ink!
-)
-clipwait
-send ^v
-sleep 333
-clipboard := copied
-reload
-return
-
 
 ::#redraw::
 ::#redrawn::
@@ -2850,13 +2835,15 @@ return
 copied := Clipboard
 clipboard=
 (
-I don't see that we have your Organization's tax exemption on file, but there are a few options we can move forward with to get your order placed:
+I don't see that we have your tax exemption approval on file yet, so we'll need to verify that before we can proceed with removing tax. I can send you an email with a link to start the process, or you can manage your tax exemption in your account settings if you'd prefer. Let me know which option you'd like to proceed with after we're finished here.
 
-1. We can place your order as pending payment now, and you can send us your tax exemption information to process afterwards. Once approved, usually the next business day, we'll remove the tax from the order total and email you a secure payment link to complete payment.
+In the meantime, there are a few options to move forward with to get your order placed now: 
 
-2. We can place your order paying for tax now, and have you send in your tax exemption for us to process. Once approved, usually the next business day, we'll credit the tax back to the payment method that was used to complete payment for the order. Choosing this option will start the delivery schedule today.
+1. We can place your order as pending payment, and I'll email you a secure payment link. Once your tax exemption status is approved, we can remove tax from the order and you can complete payment through that link.
 
-Which of these two do you think would work best for your needs?
+2. We can place your order paying for tax now. Once your tax exemption status is approved, the tax will be automatically refunded back to the original payment method. Choosing this option will start the delivery schedule today.
+
+Which of these two options do you think would work best for your needs?
 )
 clipwait
 send ^v
@@ -2865,6 +2852,51 @@ clipboard := copied
 reload
 return
 
+::#satemp::
+copied := Clipboard
+clipboard=
+(
+Order Number: 
+Order State (Posted, new, reviewed): 
+Reason for contact:
+)
+clipwait
+send ^v
+sleep 333
+clipboard := copied
+reload
+return
+
+
+::#taxorg::
+copied := Clipboard
+clipboard=
+(
+We require a tax exempt approval for each individual contact within an Organization who is purchasing from Custom Ink. I can send you an email with a link to start the process, or you can manage your tax exemption in your account settings if you'd prefer.
+
+Which of these options would work best for you?
+)
+clipwait
+send ^v
+sleep 333
+clipboard := copied
+reload
+return
+
+::#taxstat::
+copied := Clipboard
+clipboard=
+(
+After reviewing your exemption status in our system, it looks like its approval is either still in-progress or is incomplete. You can manage your tax exemption directly through the portal located in your account settings, which will provide you with all of the information and details related to that exemption specifically.
+
+You can also click on this link here to visit the tax portal: https://www.customink.com/profiles/account/tax_exemption
+)
+clipwait
+send ^v
+sleep 333
+clipboard := copied
+reload
+return
 
 
 ::#trap::
